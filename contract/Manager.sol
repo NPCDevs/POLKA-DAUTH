@@ -24,13 +24,22 @@ contract Manager {
         i_owner = msg.sender;
     }
 
-    function createProfile() public {
-        User newProfile = new User(msg.sender);
+    function createProfile(
+        string memory firstName, 
+        string memory lastName, 
+        string memory email,
+        string memory passwordHash) public {
+        User newProfile = new User(msg.sender, firstName, lastName, email, passwordHash);
         users[msg.sender] = address(newProfile);
 
         emit ProfileCreated(
             ProfileCreatedResponse(address(newProfile), msg.sender)
         );
+    }
+
+    struct checkUser {
+        bool isExists;
+        User.UserDefails user;
     }
 
     function updateUserProfile(
@@ -52,11 +61,20 @@ contract Manager {
 
     function getUser(
         address _profile
-    ) public view returns (User.UserDefails memory) {
+    ) public view returns (checkUser memory) {
 
         address profileAddress = users[_profile];
         User user = User(profileAddress);
-        return user.getUserDetails(msg.sender);
+        //require(profileAddress != address(0), "User not found");
+        if(profileAddress != address(0))
+        {
+            return checkUser(true, user.getUserDetails(msg.sender));
+        }
+        else
+        {
+            return checkUser(false, User.UserDefails("", "", "", ""));
+        }
+        
     }
 
 
