@@ -1,4 +1,4 @@
-export const contractAddress = '0x827C0c0a3D47260ba6984ee05d70227a81c79aE7';
+export const contractAddress = '0x63b634Bc5Ca5Aa03fD60292F68D593bEF6f20472';
 export const contractAbi = [
   {
     inputs: [],
@@ -51,7 +51,28 @@ export const contractAbi = [
     type: 'event',
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: 'string',
+        name: 'firstName',
+        type: 'string',
+      },
+      {
+        internalType: 'string',
+        name: 'lastName',
+        type: 'string',
+      },
+      {
+        internalType: 'string',
+        name: 'email',
+        type: 'string',
+      },
+      {
+        internalType: 'string',
+        name: 'passwordHash',
+        type: 'string',
+      },
+    ],
     name: 'createProfile',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -70,27 +91,39 @@ export const contractAbi = [
       {
         components: [
           {
-            internalType: 'string',
-            name: 'FirstName',
-            type: 'string',
+            internalType: 'bool',
+            name: 'isExists',
+            type: 'bool',
           },
           {
-            internalType: 'string',
-            name: 'LastName',
-            type: 'string',
-          },
-          {
-            internalType: 'string',
-            name: 'Email',
-            type: 'string',
-          },
-          {
-            internalType: 'string',
-            name: 'PasswordHash',
-            type: 'string',
+            components: [
+              {
+                internalType: 'string',
+                name: 'FirstName',
+                type: 'string',
+              },
+              {
+                internalType: 'string',
+                name: 'LastName',
+                type: 'string',
+              },
+              {
+                internalType: 'string',
+                name: 'Email',
+                type: 'string',
+              },
+              {
+                internalType: 'string',
+                name: 'PasswordHash',
+                type: 'string',
+              },
+            ],
+            internalType: 'struct User.UserDefails',
+            name: 'user',
+            type: 'tuple',
           },
         ],
-        internalType: 'struct User.UserDefails',
+        internalType: 'struct Manager.checkUser',
         name: '',
         type: 'tuple',
       },

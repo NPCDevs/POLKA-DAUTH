@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  width: 700px;
+  margin: 0 auto;
+  -webkit-box-shadow: 3px 3px 10px 3px #dddddd;
+  -moz-box-shadow: 3px 3px 10px 3px #dddddd;
+  box-shadow: 3px 3px 10px 3px #dddddd;
+  padding: 16px;
+  border-radius: 12px;
+  margin-top: 10%;
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 400px;
+  }
+}
