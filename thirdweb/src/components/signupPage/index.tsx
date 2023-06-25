@@ -23,23 +23,36 @@ const SignUp = () => {
     <div className="container">
       <div className={styles.wrapper}>
         <h2>Sign up</h2>
+
         <div className={styles.row}>
-          <TextInput style={{ flex: 1 }} placeholder="Your name" label="First name" withAsterisk />
-          <TextInput style={{ flex: 1 }} placeholder="Your name" label="Last name" withAsterisk />
+          <TextInput
+            style={{ flex: 1 }}
+            value={firstName}
+            onChange={(text) => setFirstName(text.target.value)}
+            placeholder="Your name"
+            label="First name"
+            withAsterisk
+          />
+          <TextInput
+            style={{ flex: 1 }}
+            placeholder="Your name"
+            label="Last name"
+            withAsterisk
+            value={lastName}
+            onChange={(text) => setLastName(text.target.value)}
+          />
         </div>
         <div className={styles.row}>
-          <TextInput style={{ flex: 1 }} placeholder="Your email" label="Email" withAsterisk />
+          <TextInput
+            style={{ flex: 1 }}
+            placeholder="Your email"
+            label="Email"
+            withAsterisk
+            value={email}
+            onChange={(text) => setEmail(text.target.value)}
+          />
         </div>
-        {/* <DateInput
-          style={{ width: '100%' }}
-          value={date}
-          //   @ts-ignore
-          onChange={(date) => setDate(new Date(date))}
-          label="Birth date"
-          placeholder="Your birth date"
-          maw={400}
-          mx="auto"
-        /> */}
+
         <div className={styles.row}>
           <TextInput
             style={{ flex: 1 }}
@@ -47,15 +60,22 @@ const SignUp = () => {
             label="Password"
             type="password"
             withAsterisk
+            value={password}
+            onChange={(text) => setPassword(text.target.value)}
           />
         </div>
-        <Web3Button
+        {/* <Web3Button
           contractAddress={contractAddress}
-          action={() => mutateAsync({ args: [firstName, lastName, email, password] })}>
-          <Button style={{ marginTop: 24 }} radius="md" size="md" uppercase>
-            Sign up
-          </Button>
-        </Web3Button>
+          action={() => mutateAsync({ args: ['firstName', 'lastName', 'email', 'password'] })}> */}
+        <Button
+          onClick={() => mutateAsync({ args: [firstName, lastName, email, password] })}
+          style={{ marginTop: 24 }}
+          radius="md"
+          size="md"
+          uppercase>
+          Sign up
+        </Button>
+        {/* </Web3Button> */}
       </div>
     </div>
   );
