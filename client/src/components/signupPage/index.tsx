@@ -4,12 +4,20 @@ import { Button, TextInput } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
 
 import styles from './SignUp.module.scss';
+import { contractAbi, contractAddress } from '../../utils/contract';
+import { Web3Button, useContract, useContractWrite } from '@thirdweb-dev/react';
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  // createProfile
+
+  const { contract } = useContract(contractAddress, contractAbi);
+  const { mutateAsync, isLoading, error } = useContractWrite(contract, 'createProfile');
+
   //   const [date, setDate] = useState();
   return (
     <div className="container">
@@ -41,10 +49,13 @@ const SignUp = () => {
             withAsterisk
           />
         </div>
-
-        <Button style={{ marginTop: 24 }} radius="md" size="md" uppercase>
-          Sign up
-        </Button>
+        <Web3Button
+          contractAddress={contractAddress}
+          action={() => mutateAsync({ args: [firstName, lastName, email, password] })}>
+          <Button style={{ marginTop: 24 }} radius="md" size="md" uppercase>
+            Sign up
+          </Button>
+        </Web3Button>
       </div>
     </div>
   );
